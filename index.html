@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Comunicación Paciente Voz">
+    <meta name="description" content="Aplicación de comunicación con voz automática para pacientes hospitalizados">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkNvbXVuaWNhY2nDs24gUGFjaWVudGUgVm96IiwKICAic2hvcnRfbmFtZSI6ICJDb21QYWNpZW50ZVZveiIsCiAgImRlc2NyaXB0aW9uIjogIkFwbGljYWNpw7NuIGRlIGNvbXVuaWNhY2nDs24gY29uIHZveiBhdXRvbcOhdGljYSBwYXJhIHBhY2llbnRlcyIsCiAgInN0YXJ0X3VybCI6ICIuLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzY2N2VlYSIsCiAgInRoZW1lX2NvbG9yIjogIiM2NjdlZWEiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0Nzdmcgd2lkdGg9JzE5MicgaGVpZ2h0PScxOTInIHZpZXdCb3g9JzAgMCAxOTIgMTkyJyBmaWxsPSdub25lJyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnJTNFJTNDcmVjdCB3aWR0aD0nMTkyJyBoZWlnaHQ9JzE5Micgcng9JzQwJyBmaWxsPSclMjM2NjdlZWEnLyUzRSUzQ2NpcmNsZSBjeD0nOTYnIGN5PSc3Nicgcj0nMzInIGZpbGw9J3doaXRlJy8lM0UlM0NwYXRoIGQ9J005NiAxMDBjLTguODM3IDAtMTYgNy4xNjMtMTYgMTZzNy4xNjMgMTYgMTYgMTYgMTYtNy4xNjMgMTYtMTYtNy4xNjMtMTYtMTYtMTZ6JyBmaWxsPSd3aGl0ZScvJTNFJTNDcGF0aCBkPSdNODAuNSA2NGMwLTguODM3IDYuNzE2LTE2IDE1LjUtMTZzMTUuNSA3LjE2MyAxNS41IDE2JyBzdHJva2U9J3doaXRlJyBzdHJva2Utd2lkdGg9JzMnIGZpbGw9J25vbmUnLyUzRSUzQy9zdmclM0UiLAogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9LAogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0Nzdmcgd2lkdGg9JzUxMicgaGVpZ2h0PSc1MTInIHZpZXdCb3g9JzAgMCA1MTIgNTEyJyBmaWxsPSdub25lJyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnJTNFJTNDcmVjdCB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMicgcng9JzEwMCcgZmlsbD0nJTIzNjY3ZWVhJy8lM0UlM0NjaXJjbGUgY3g9JzI1NicgY3k9JzIwNicgcj0nODAnIGZpbGw9J3doaXRlJy8lM0UlM0NwYXRoIGQ9J00yNTYgMjY4Yy0yMy40NzIgMC00MiAxOC41MjgtNDIgNDJzMTguNTI4IDQyIDQyIDQyIDQyLTE4LjUyOCA0Mi00Mi0xOC41MjgtNDItNDItNDJ6JyBmaWxsPSd3aGl0ZScvJTNFJTNDcGF0aCBkPSdNMjEwIDEzNWMwLTIzLjQ3MiAxNy45MDQtNDIgNDEuMzMzLTQyczQxLjMzMyAxOC41MjggNDEuMzMzIDQyJyBzdHJva2U9J3doaXRlJyBzdHJva2Utd2lkdGg9JzgnIGZpbGw9J25vbmUnLyUzRSUzQy9zdmclM0UiLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9CiAgXQp9">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg width='192' height='192' viewBox='0 0 192 192' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='192' height='192' rx='40' fill='%23667eea'/%3E%3Ccircle cx='96' cy='76' r='32' fill='white'/%3E%3Cpath d='M96 100c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16z' fill='white'/%3E%3Cpath d='M80.5 64c0-8.837 6.716-16 15.5-16s15.5 7.163 15.5 16' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E">
+    
+    <title>Comunicación Paciente con Voz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Selector de idioma */
+        .language-selector {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .language-selector select {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            outline: none;
+            min-width: 200px;
+        }
+
+        .language-selector select:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border-radius: 15px;
+            color: white;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .voice-indicator {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .categories {
+            margin-bottom: 20px;
+        }
+
+        .category {
+            margin-bottom: 25px;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .comm-button {
+            padding: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            min-height: 80px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .comm-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .comm-button:active {
+            transform: translateY(0);
+        }
+
+        /* Efecto de voz activa */
+        .comm-button.speaking {
+            animation: speaking 0.5s ease-in-out;
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+        }
+
+        @keyframes speaking {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .emergency {
+            background: linear-gradient(45deg, #ff4757, #ff3838);
+            color: white;
+        }
+
+        .basic-need {
+            background: linear-gradient(45deg, #3742fa, #2f3542);
+            color: white;
+        }
+
+        .comfort {
+            background: linear-gradient(45deg, #2ed573, #1e90ff);
+            color: white;
+        }
+
+        .pain {
+            background: linear-gradient(45deg, #ffa726, #ff7043);
+            color: white;
+        }
+
+        .emotion {
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            color: #333;
+        }
+
+        .communication {
+            background: linear-gradient(45deg, #9c88ff, #8c7ae6);
+            color: white;
+        }
+
+        .icon {
+            font-size: 24px;
+        }
+
+        .pain-scale {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .pain-number {
+            padding: 15px;
+            background: linear-gradient(45deg, #ffa726, #ff7043);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pain-number:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(255, 167, 38, 0.4);
+        }
+
+        .pain-number.speaking {
+            animation: speaking 0.5s ease-in-out;
+            box-shadow: 0 0 20px rgba(255, 167, 38, 0.8);
+        }
+
+        .message-display {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: center;
+            border-left: 5px solid #4CAF50;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            gap: 15px;
+        }
+
+        .volume-slider {
+            width: 150px;
+            height: 8px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+            border: none;
+        }
+
+        .instructions {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: #856404;
+        }
+
+        /* PWA Install Button */
+        .install-prompt {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: none;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(76, 175, 80, 0.4);
+            z-index: 1000;
+            display: none;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .install-prompt:hover {
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 6px 25px rgba(76, 175, 80, 0.5);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateX(-50%) translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Splash screen styles */
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .splash-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .splash-logo {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .splash-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .splash-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            text-align: center;
+            max-width: 300px;
+        }
+
+        /* Offline indicator */
+        .offline-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #ff4757;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            z-index: 1001;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .offline-indicator.show {
+            transform: translateY(0);
+        }
+
+        /* Soporte para idiomas RTL (árabe) */
+        .rtl {
+            direction: rtl;
+            text-align: right;
+        }
+
+        .rtl .buttons-grid {
+            direction: ltr;
+        }
+
+        .rtl .category-title {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-logo">🔊</div>
+        <div class="splash-title">Comunicación con Voz</div>
+        <div class="splash-subtitle">Cargando aplicación de comunicación con voz automática...</div>
+    </div>
+
+    <!-- Offline Indicator -->
+    <div class="offline-indicator" id="offlineIndicator">
+        📵 Sin conexión a internet - La aplicación funciona offline
+    </div>
+
+    <!-- Install Prompt -->
+    <button class="install-prompt" id="installPrompt">
+        📱 Instalar aplicación
+    </button>
+
+    <div class="container">
+        <!-- Selector de idioma -->
+        <div class="language-selector">
+            <select id="languageSelect" onchange="changeLanguage()">
+                <option value="es">🇦🇷 Español</option>
+                <option value="en">🇺🇸 English</option>
+                <option value="pt">🇧🇷 Português</option>
+                <option value="it">🇮🇹 Italiano</option>
+                <option value="fr">🇫🇷 Français</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="zh">🇨🇳 中文</option>
+                <option value="ar">🇸🇦 العربية</option>
+                <option value="ru">🇷🇺 Русский</option>
+                <option value="ko">🇰🇷 한국어</option>
+            </select>
+        </div>
+
+        <div class="header">
+            <div class="voice-indicator">🔊</div>
+            <h1 id="mainTitle">🔊 Comunicación con Voz</h1>
+            <p id="subtitle">Toca los botones para hablar automáticamente</p>
+        </div>
+
+        <div class="message-display" id="messageDisplay">
+            Toca cualquier botón y se reproducirá automáticamente
+        </div>
+
+        <div class="volume-control">
+            <span>🔉</span>
+            <input type="range" min="0" max="1" step="0.1" value="0.8" class="volume-slider" id="volumeSlider">
+            <span>🔊</span>
+        </div>
+
+        <div class="categories">
+            <!-- Emergencias -->
+            <div class="category">
+                <div class="category-title" id="urgentTitle">🚨 URGENTE</div>
+                <div class="buttons-grid">
+                    <button class="comm-button emergency" onclick="speakTranslatedMessage('emergency_help', this)">
+                        <span class="icon">🚨</span>
+                        <span id="emergencyBtn">EMERGENCIA</span>
+                    </button>
+                    <button class="comm-button emergency" onclick="speakTranslatedMessage('cant_breathe', this)">
+                        <span class="icon">😰</span>
+                        <span id="breatheBtn">NO RESPIRO</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dolor -->
+            <div class="category">
+                <div class="category-title" id="painTitle">😣 DOLOR</div>
+                <div class="buttons-grid">
+                    <button class="comm-button pain" onclick="speakTranslatedMessage('have_pain', this)">
+                        <span class="icon">😣</span>
+                        <span id="painBtn">TENGO DOLOR</span>
+                    </button>
+                    <button class="comm-button pain" onclick="speakTranslatedMessage('severe_pain', this)">
+                        <span class="icon">😫</span>
+                        <span id="severePainBtn">DOLOR FUERTE</span>
+                    </button>
+                </div>
+                <div class="pain-scale" id="painScale">
+                    <button class="pain-number" onclick="speakTranslatedMessage('pain_level', this, '1')">1</button>
+                    <button class="pain-number" onclick="speakTranslatedMessage('pain_level', this, '2')">2</button>
+                    <button class="pain-number" onclick="speakTranslatedMessage('pain_level', this, '3')">3</button>
+                    <button class="pain-number" onclick="speakTranslatedMessage('pain_level', this, '4')">4</button>
+                    <button class="pain-number" onclick="speakTranslatedMessage('pain_level', this, '5')">5</button>
+                    <button class="pain-number" onclick="speakTranslatedMessage('pain_level', this, '6')">6</button>
+                    <button class="pain-number" onclick="speakTranslatedMessage('pain_level', this, '7')">7</button>
+                    <button class="pain-number" onclick="speakTranslatedMessage('pain_level', this, '8')">8</button>
+                    <button class="pain-number" onclick="speakTranslatedMessage('pain_level', this, '9')">9</button>
+                    <button class="pain-number" onclick="speakTranslatedMessage('pain_level', this, '10')">10</button>
+                </div>
+            </div>
+
+            <!-- Necesidades básicas -->
+            <div class="category">
+                <div class="category-title" id="basicTitle">🏥 NECESIDADES BÁSICAS</div>
+                <div class="buttons-grid">
+                    <button class="comm-button basic-need" onclick="speakTranslatedMessage('need_bathroom', this)">
+                        <span class="icon">🚻</span>
+                        <span id="bathroomBtn">IR AL BAÑO</span>
+                    </button>
+                    <button class="comm-button basic-need" onclick="speakTranslatedMessage('need_water', this)">
+                        <span class="icon">💧</span>
+                        <span id="waterBtn">TENGO SED</span>
+                    </button>
+                    <button class="comm-button basic-need" onclick="speakTranslatedMessage('need_food', this)">
+                        <span class="icon">🍽️</span>
+                        <span id="foodBtn">TENGO HAMBRE</span>
+                    </button>
+                    <button class="comm-button basic-need" onclick="speakTranslatedMessage('need_medicine', this)">
+                        <span class="icon">💊</span>
+                        <span id="medicineBtn">MEDICINA</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Comodidad -->
+            <div class="category">
+                <div class="category-title" id="comfortTitle">😌 COMODIDAD</div>
+                <div class="buttons-grid">
+                    <button class="comm-button comfort" onclick="speakTranslatedMessage('feel_cold', this)">
+                        <span class="icon">🥶</span>
+                        <span id="coldBtn">TENGO FRÍO</span>
+                    </button>
+                    <button class="comm-button comfort" onclick="speakTranslatedMessage('feel_hot', this)">
+                        <span class="icon">🥵</span>
+                        <span id="hotBtn">TENGO CALOR</span>
+                    </button>
+                    <button class="comm-button comfort" onclick="speakTranslatedMessage('change_position', this)">
+                        <span class="icon">🔄</span>
+                        <span id="positionBtn">CAMBIAR POSICIÓN</span>
+                    </button>
+                    <button class="comm-button comfort" onclick="speakTranslatedMessage('need_pillow', this)">
+                        <span class="icon">🛏️</span>
+                        <span id="pillowBtn">ALMOHADA</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Emociones -->
+            <div class="category">
+                <div class="category-title" id="emotionsTitle">💭 EMOCIONES</div>
+                <div class="buttons-grid">
+                    <button class="comm-button emotion" onclick="speakTranslatedMessage('feel_scared', this)">
+                        <span class="icon">😨</span>
+                        <span id="scaredBtn">TENGO MIEDO</span>
+                    </button>
+                    <button class="comm-button emotion" onclick="speakTranslatedMessage('feel_anxious', this)">
+                        <span class="icon">😰</span>
+                        <span id="anxiousBtn">TENGO ANSIEDAD</span>
+                    </button>
+                    <button class="comm-button emotion" onclick="speakTranslatedMessage('feel_sad', this)">
+                        <span class="icon">😢</span>
+                        <span id="sadBtn">ESTOY TRISTE</span>
+                    </button>
+                    <button class="comm-button emotion" onclick="speakTranslatedMessage('feel_happy', this)">
+                        <span class="icon">😊</span>
+                        <span id="happyBtn">ESTOY FELIZ</span>
+                    </button>
+                    <button class="comm-button emotion" onclick="speakTranslatedMessage('feel_confused', this)">
+                        <span class="icon">😕</span>
+                        <span id="confusedBtn">ESTOY CONFUNDIDO</span>
+                    </button>
+                    <button class="comm-button emotion" onclick="speakTranslatedMessage('feel_frustrated', this)">
+                        <span class="icon">😤</span>
+                        <span id="frustratedBtn">ESTOY FRUSTRADO</span>
+                    </button>
+                    <button class="comm-button emotion" onclick="speakTranslatedMessage('feel_calm', this)">
+                        <span class="icon">😌</span>
+                        <span id="calmBtn">ME SIENTO TRANQUILO</span>
+                    </button>
+                    <button class="comm-button emotion" onclick="speakTranslatedMessage('feel_lonely', this)">
+                        <span class="icon">😔</span>
+                        <span id="lonelyBtn">ME SIENTO SOLO</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Comunicación -->
+            <div class="category">
+                <div class="category-title" id="staffTitle">👨‍⚕️ PERSONAL MÉDICO</div>
+                <div class="buttons-grid">
+                    <button class="comm-button communication" onclick="speakTranslatedMessage('call_nurse', this)">
+                        <span class="icon">👩‍⚕️</span>
+                        <span id="nurseBtn">LLAMEN ENFERMERA</span>
+                    </button>
+                    <button class="comm-button communication" onclick="speakTranslatedMessage('need_doctor', this)">
+                        <span class="icon">👨‍⚕️</span>
+                        <span id="doctorBtn">QUIERO AL DOCTOR</span>
+                    </button>
+                    <button class="comm-button communication" onclick="speakTranslatedMessage('call_family', this)">
+                        <span class="icon">📞</span>
+                        <span id="familyBtn">LLAMAR FAMILIA</span>
+                    </button>
+                    <button class="comm-button communication" onclick="speakTranslatedMessage('thank_you', this)">
+                        <span class="icon">🙏</span>
+                        <span id="thanksBtn">GRACIAS</span>
+                    </button>
+                </div>
+            </div>
+        </div>
