@@ -1,1 +1,1 @@
-# comunicaci-n--paciente-voz
+# comunicaci-n-paciente-voz
