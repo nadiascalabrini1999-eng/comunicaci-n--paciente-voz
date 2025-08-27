@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comunicación Paciente - Instalación</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .qr-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 3px dashed #667eea;
+        }
+
+        .qr-code {
+            width: 250px;
+            height: 250px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .qr-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .qr-subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .app-link {
+            font-size: 14px;
+            color: #667eea;
+            word-break: break-all;
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: monospace;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .app-link:hover {
+            background: #bbdefb;
+        }
+
+        .instructions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .instruction-card {
+            background: #fff;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .instruction-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+        }
+
+        .device-icon {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .instruction-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #333;
+        }
+
+        .instruction-steps {
+            list-style: none;
+            padding: 0;
+            counter-reset: step-counter;
+        }
+
+        .instruction-steps li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .instruction-steps li:before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            left: 0;
+            top: 8px;
+            background: #667eea;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .benefits {
+            background: linear-gradient(45deg, #e8f5e8, #f0f8f0);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .benefits h3 {
+            color: #2e7d32;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .benefit-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .benefit-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2e7d32;
+        }
+
+        .benefit-desc {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .demo-button {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 30px auto;
+            padding: 20px 30px;
+            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .demo-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4);
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .contact-info h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .contact-info p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .qr-code {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .instructions {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💬 Comunicación Paciente</h1>
+            <p>Aplicación de comunicación para pacientes hospitalizados</p>
+            <p><strong>Instalación gratuita mediante código QR</strong></p>
+        </div>
+
+        <div class="qr-section">
+            <div class="qr-title">📱 Escanea para instalar</div>
+            <div class="qr-subtitle">Apunta la cámara de tu teléfono al código QR</div>
+            
+            <!-- Código QR - se actualizará automáticamente con tu URL real -->
+            <div class="qr-code" id="qrCode">
+                <img id="qrImage" src="" alt="Código QR" style="width: 100%; height: 100%; display: none;">
+                <svg width="210" height="210" viewBox="0 0 210 210" fill="none" xmlns="http://www.w3.org/2000/svg" id="placeholderQR">
+                    <!-- QR Code pattern placeholder -->
+                    <rect width="210" height="210" fill="white"/>
+                    
+                    <!-- Corner squares -->
+                    <rect x="0" y="0" width="70" height="70" fill="black"/>
+                    <rect x="10" y="10" width="50" height="50" fill="white"/>
+                    <rect x="20" y="20" width="30" height="30" fill="black"/>
+                    
+                    <rect x="140" y="0" width="70" height="70" fill="black"/>
+                    <rect x="150" y="10" width="50" height="50" fill="white"/>
+                    <rect x="160" y="20" width="30" height="30" fill="black"/>
+                    
+                    <rect x="0" y="140" width="70" height="70" fill="black"/>
+                    <rect x="10" y="150" width="50" height="50" fill="white"/>
+                    <rect x="20" y="160" width="30" height="30" fill="black"/>
+                    
+                    <!-- Medical cross in center -->
+                    <rect x="95" y="85" width="20" height="5" fill="#4CAF50"/>
+                    <rect x="102.5" y="77.5" width="5" height="20" fill="#4CAF50"/>
+                    
+                    <!-- Data modules (sample pattern) -->
+                    <rect x="80" y="80" width="10" height="10" fill="black"/>
+                    <rect x="90" y="80" width="10" height="10" fill="black"/>
+                    <rect x="100" y="80" width="10" height="10" fill="white"/>
+                    <rect x="110" y="80" width="10" height="10" fill="black"/>
+                    <rect x="120" y="80" width="10" height="10" fill="black"/>
+                </svg>
+            </div>
+            
+            <div class="app-link" id="appUrlDiv" onclick="copyToClipboard()">
+                <strong>URL directa:</strong><br>
+                <span id="appUrl">Cargando URL...</span>
+            </div>
+            
+            <p><small>💡 <strong>Tip:</strong> También puedes abrir la URL en tu navegador móvil</small></p>
+        </div>
+
+        <button class="demo-button" onclick="openDemo()">
+            🚀 Probar aplicación ahora
+        </button>
+
+        <div class="instructions">
+            <div class="instruction-card">
+                <div class="device-icon">📱</div>
+                <div class="instruction-title">Android / Samsung</div>
+                <ol class="instruction-steps">
+                    <li>Escanea el código QR con la cámara</li>
+                    <li>Toca el enlace que aparece</li>
+                    <li>En Chrome: toca "Agregar a pantalla de inicio"</li>
+                    <li>Confirma la instalación</li>
+                    <li>¡Listo! La app aparece en tu menú</li>
+                </ol>
+            </div>
+
+            <div class="instruction-card">
+                <div class="device-icon">📱</div>
+                <div class="instruction-title">iPhone / iPad</div>
+                <ol class="instruction-steps">
+                    <li>Escanea el código QR con la cámara</li>
+                    <li>Abre el enlace en Safari</li>
+                    <li>Toca el botón "Compartir" (⬆️)</li>
+                    <li>Selecciona "Agregar a pantalla de inicio"</li>
+                    <li>Confirma y personaliza el nombre</li>
+                </ol>
+            </div>
+
+            <div class="instruction-card">
+                <div class="device-icon">💻</div>
+                <div class="instruction-title">Computadora / Tablet</div>
+                <ol class="instruction-steps">
+                    <li>Abre la URL en Chrome o Edge</li>
+                    <li>Busca el icono "Instalar" en la barra de direcciones</li>
+                    <li>Haz clic en "Instalar aplicación"</li>
+                    <li>La app se abrirá en su propia ventana</li>
+                    <li>Accede desde el menú de aplicaciones</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="benefits">
+            <h3>🌟 Beneficios de la aplicación PWA</h3>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <span class="benefit-icon">⚡</span>
+                    <div class="benefit-title">Instalación instantánea</div>
+                    <div class="benefit-desc">No necesita App Store, se instala directamente</div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">📶</span>
+                    <div class="benefit-title">Funciona offline</div>
+                    <div class="benefit-desc">Opera sin conexión a internet</div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🔄</span>
+                    <div class="benefit-title">Actualizaciones automáticas</div>
+                    <div class="benefit-desc">Siempre la última versión disponible</div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🌍</span>
+                    <div class="benefit-title">10 idiomas</div>
+                    <div class="benefit-desc">Español, inglés, portugués, italiano, etc.</div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🏥</span>
+                    <div class="benefit-title">Uso hospitalario</div>
+                    <div class="benefit-desc">Diseñada específicamente para pacientes</div>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🔒</span>
+                    <div class="benefit-title">Segura y privada</div>
+                    <div class="benefit-desc">No guarda datos personales</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-info">
+            <h4>📧 ¿Necesitas ayuda con la instalación?</h4>
+            <p><strong>Para hospitales y personal médico:</strong></p>
+            <p>• Manual de implementación disponible</p>
+            <p>• Soporte técnico para instalación masiva</p>
+            <p>• Personalización para diferentes instituciones</p>
+            <p>• Capacitación del personal</p>
+        </div>
+    </div>
+
+    <script>
+        // Generar URL basada en la ubicación actual
+        function updateAppUrl() {
+            // Obtener la URL base (donde está alojada esta página)
+            let baseUrl = window.location.href.replace('/instalacion.html', '');
+            if (baseUrl.endsWith('/')) {
+                baseUrl = baseUrl.slice(0, -1);
+            }
+            
+            const appUrl = baseUrl + '/index.html';
+            document.getElementById('appUrl').textContent = appUrl;
+            
+            // Generar QR code real con API gratuita
+            generateQRCode(appUrl);
+        }
+
+        // Generar código QR real usando API gratuita
+        function generateQRCode(url) {
+            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=210x210&format=svg&data=${encodeURIComponent(url)}`;
+            
+            // Crear imagen del QR
+            const qrImage = document.getElementById('qrImage');
+            qrImage.src = qrApiUrl;
+            qrImage.style.display = 'block';
+            
+            // Ocultar placeholder
+            document.getElementById('placeholderQR').style.display = 'none';
+        }
+
+        function openDemo() {
+            // Abrir la aplicación principal en la misma ventana
+            window.location.href = './index.html';
+        }
+
+        // Funcionalidad para copiar URL
+        function copyToClipboard() {
+            const url = document.getElementById('appUrl').textContent;
+            navigator.clipboard.writeText(url).then(() => {
+                const urlDiv = document.getElementById('appUrlDiv');
+                const originalBg = urlDiv.style.backgroundColor;
+                urlDiv.style.backgroundColor = '#4CAF50';
+                urlDiv.innerHTML = '<strong>¡URL copiada al portapapeles! ✓</strong><br>' + url;
+                
+                setTimeout(() => {
+                    urlDiv.style.backgroundColor = originalBg;
+                    urlDiv.innerHTML = '<strong>URL directa:</strong><br><span id="appUrl">' + url + '</span>';
+                }, 2000);
+            }).catch(() => {
+                // Fallback para navegadores que no soportan clipboard API
+                alert('URL: ' + url + '\n\nCopia manualmente esta URL');
+            });
+        }
+
+        // Detectar si es PWA instalada y ajustar interfaz
+        if (window.matchMedia('(display-mode: standalone)').matches) {
+            document.body.style.paddingTop = '20px';
+        }
+
+        // Inicializar cuando la página carga
+        window.addEventListener('load', function() {
+            updateAppUrl();
+        });
+    </script>
+</body>
+</html>
